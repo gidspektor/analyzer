@@ -1,58 +1,51 @@
 <html>
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel='stylesheet' href='styles.css'>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>
         <meta charset='UTF-8'>
         <title>Gideon Spektor</title>
     </head>
     <body>
-        <div class='container pt-5'>
-            <div class='row'>
-                <div class='col-6 m-0'>
-                    <div class='row mb-4'>
-                        <button data='off' onclick="togglePlay(this)">
-                            <i class="fa fa-play"></i>
-                            <i class="fa fa-pause"></i>
-                        </button>
-                        <audio id='audio' src=''></audio>
-                        <input id='upload' type = "file" name="file" accept = ".mp3"/>
+        <div class='container-fluid pt-2'>
+            <div class='row pl-2'>
+                <input class='col-6' type='file' id='thefile' accept='audio/*'/>
+            </div>
+            <div class='row mx-auto mt-lg-4 mt-5 pt-5'>
+                <div class='col-12'>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Fat kick</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Groovie bass</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Slow bass</button>
                     </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Fat kick</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Groovie bass</button>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Vocals</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Strings</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Acid bass</button>
                     </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Slow bass</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Acid bass</button>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Sax thrump</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Vocoder</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Sharp high hat</button>
                     </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Vocals</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Strings</button>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Cow bells</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Sax thrump</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Shaker high hat</button>
                     </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Vocoder</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Sharp high hat</button>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Congos/bongos</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-3 mr-2'>Long breakdown</button>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Clap</button>
                     </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Sax thrump</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Shaker high hat</button>
-                    </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Cow bells</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Congos/bongos</button>
-                    </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-3 mr-2'>Long breakdown</button>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Clap</button>
-                    </div>
-                    <div class='row py-2'>
-                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn btn-light col-2 mr-2'>Animals</button>
+                    <div class='row py-2 justify-content-center'>
+                        <button type='button' data='off' onclick='toggleInstrument(this)' class='btn col-2 mr-2'>Animals</button>
                     </div>
                 </div>
-                <div class='col-6 m-0'>
-                    <button class='mb-4' type='button' onclick='showResults()'>Show results</button>
-                    <div id='results'></div>
-                </div>
+            </div>
+            <div id='content row'>
+                <canvas id='canvas'></canvas>
+                <audio id='audio' controls></audio>
             </div>
         </div>
     </body>
