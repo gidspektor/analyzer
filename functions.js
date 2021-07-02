@@ -59,7 +59,7 @@ function createCsv() {
 }
 
 function downloadCsv() {
-    csvContent = createCsv()
+    var csvContent = createCsv()
 
     var file = document.getElementById('thefile')
     var encodedUri = encodeURI(csvContent)
@@ -72,7 +72,10 @@ function downloadCsv() {
 }
 
 function emailCsv() {
-    // Email server code here
+    var csvContent = createCsv()
+    var encodedUri = encodeURI(csvContent)
+
+    mail('valeriejane@cabanalibre.com', 'Analyzed song', encodedUri, 'gideon@cabanalibre.com')
 }
 
 function emptyObject() {
@@ -126,12 +129,12 @@ window.onload = function() {
             x = 0
     
             analyser.getByteFrequencyData(dataArray)
-    
+
             ctx.fillStyle = '#000'
             ctx.fillRect(0, 0, WIDTH, HEIGHT)
     
             for (var i = 0; i < bufferLength; i++) {
-                barHeight = dataArray[i] * 2.3
+                barHeight = dataArray[i] * 2.5
                 
                 var r = barHeight + (25 * (i/bufferLength))
                 var g = 50 * (i/bufferLength)
