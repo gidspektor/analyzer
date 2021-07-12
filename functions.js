@@ -41,7 +41,7 @@ function getTotalPlayTimeOfInstrument(array) {
 function createCsv() {
     var Dj = document.getElementById('djName').value.replace(/\W+/g, ' ')
 
-    const rows = [['Instrument', 'Total Play Time', 'Song Length', 'Date', 'Number of Instruments', 'DJ', 'Start Time', 'Stop Time']]
+    const rows = [['Element', 'Total Play Time', 'Song Length', 'Date', 'Number of Elements', 'DJ', 'Start Time', 'Stop Time']]
 
     rows.push(['', '', musicObject['duration'], new Date().toISOString().split('T')[0], Object.keys(musicObject).length - 1, Dj])
 
