@@ -26,6 +26,8 @@ function getTotalPlayTimeOfInstrument(array) {
     const chunkedTimes = []
     const playTimes = []
 
+    array.length % 2 === 0 ? [] : array.splice(-1, 1)
+
     while (array.length > 0) {
         const chunk = array.splice(0, 2)
         chunkedTimes.push(chunk)
@@ -35,20 +37,25 @@ function getTotalPlayTimeOfInstrument(array) {
         playTimes.push(times[1] - times[0])
     })
 
-    return playTimes.reduce((a, b) => a + b, 0)
+    let playTime = playTimes.reduce((a, b) => a + b, 0)
+
+    return convertSecondsToMinutes(playTime)
 }
 
 function createCsv() {
     var Dj = document.getElementById('djName').value.replace(/\W+/g, ' ')
 
-    const rows = [['Element', 'Total Play Time', 'Song Length', 'Date', 'Number of Elements', 'DJ', 'Start Time', 'Stop Time']]
+    const rows = [['Element', 'Total Play Time', 'Total Times Selected', 'Song Length', 'Date', 'Number of Elements', 'DJ', 'Start Time', 'Stop Time']]
 
-    rows.push(['', '', musicObject['duration'], new Date().toISOString().split('T')[0], Object.keys(musicObject).length - 1, Dj])
+    rows.push(['', '', '', musicObject['duration'], new Date().toISOString().split('T')[0], Object.keys(musicObject).length - 1, Dj])
 
     Object.keys(musicObject).forEach(key => {
         if (key != 'duration') {
             let timesCopy = [...musicObject[key]]
-            rows.push([key, getTotalPlayTimeOfInstrument(timesCopy), '', '', '', '', musicObject[key]])
+            let timesClicked = Math.round(musicObject[key].length / 2)
+            let startStopTime = musicObject[key].map(item => convertSecondsToMinutes(item))
+
+            rows.push([key, getTotalPlayTimeOfInstrument(timesCopy), timesClicked, '', '', '', '', startStopTime])
         }
     })
 
@@ -82,6 +89,15 @@ function emptyObject() {
     musicObject = {}
 }
 
+function convertSecondsToMinutes(audioSeconds) {
+    let minutes = Math.floor(audioSeconds / 60)
+    let seconds = Math.round(audioSeconds - minutes * 60)
+
+    seconds = seconds.toString().length === 1 ? '0' + seconds : seconds
+
+    return minutes + ':' + seconds
+}
+
 window.onload = function() {
     var file = document.getElementById('thefile')
     var audio = document.getElementById('audio')
@@ -93,9 +109,7 @@ window.onload = function() {
         audio.src = URL.createObjectURL(files[0])
 
         audio.addEventListener('loadedmetadata', function() {
-            var minutes = Math.floor(audio.duration / 60)
-            var seconds = Math.round(audio.duration - minutes * 60)
-            musicObject['duration'] = minutes + ':' + seconds
+            musicObject['duration'] = convertSecondsToMinutes(audio.duration)
         })
 
         var context = new AudioContext()
